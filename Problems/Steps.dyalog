@@ -1,4 +1,23 @@
-﻿ steps←{p}Steps fromTo
-      ⍝ 2020 APL Problem Solving Competition Phase II
-      ⍝ Stub function for Problem 2, Task 1 - Steps
-      ⍝ Put your code and comments below here
+﻿ Steps←{
+
+     ⍺←1
+     p←⍺
+     a b←fromTo←⍵
+
+ ⍝ Return vector of numbers evenly spaced between a and b inclusive,
+ ⍝ with step size p if p>0, or 1+|⌊p steps if p<0 including a and b,
+ ⍝ in which case (⍴Result)=1+|⌊p.
+ ⍝ If p=0, return ,a.
+
+     ⎕IO←0
+
+     ∆←b-a
+
+     nSteps stepSize←{
+         p≤0:nSteps(∆÷1⌈nSteps←|⌊p)
+         (⌈|∆÷stepSize)(stepSize←p××∆)
+     }⍬
+
+     (1+nSteps)↑(a+stepSize×⍳nSteps),b
+
+ }
