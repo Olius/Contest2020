@@ -1,0 +1,5 @@
+@salutation@ @firstname@ @lastname@;
+Congratulations!  You have won a @prize@ worth over £@value@!
+@firstname@, please come to our office to pick up your @prize@.
+Please feel free to contact us at info@@contest.com.
+Your email address in our domain is @firstname@@@contest.com.
