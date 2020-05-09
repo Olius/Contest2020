@@ -1,0 +1,16 @@
+= Contest2020: Louis's Dyalog APL Contest 2020 solutions
+
+This year we will:
+
+ - Be using `git`.
+
+ - Strive for elegance and readability.
+
+
+== Style guidelines
+
+* Dfns are preferred.
+* Name left and right arguments at start of function.
+* Follow by clear and concise description.
+* Factor and name helper functions and variables.
+* Compute result.
