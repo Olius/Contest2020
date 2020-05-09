@@ -1,4 +1,17 @@
-﻿ score←dd DiveScore scores
-      ⍝ 2020 APL Problem Solving Competition Phase II
-      ⍝ Stub function for Problem 1, Task 1 - DiveScore
-      ⍝ Put your code and comments below here
+﻿ DiveScore←{
+
+     dd←⍺
+     scores←⍵
+
+ ⍝ Select 3 closest values to median of vector scores,
+ ⍝ then sum and multiply them by dd.
+
+ ⍝ Select ⍺ closest values to middle of vector ⍵.
+     midValues←{⍺↑(¯1+⌊(⍴⍵)÷2)↓⍵}
+
+ ⍝ Sort vector ⍵.
+     sort←{⍵[⍋⍵]}
+
+     dd×+/3 midValues sort scores
+
+ }
