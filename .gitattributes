@@ -1,0 +1,4 @@
+*.aplf	linguist-language=APL
+
+Data/*	linguist-vendored
+Contest2020.dyalog	linguist-vendored
