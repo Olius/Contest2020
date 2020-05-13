@@ -1,44 +1,20 @@
- PastTasks←{
-
-     url←⍵
-
-     ⍝ Retrieve all links to PDFs from page at url.
-     ⍝ Requires ]load HttpCommand.
-
-     ⍝ Get XML matrix of page at URL ⍵.
-     getXML←{⎕XML(HttpCommand.Get ⍵).Data}
-
-     getRows←{
+ PastTasks←{                                                 ⍝  Retrieve all links to PDFs from page at url.
+     url←⍵                                                   ⍝  Requires ]load HttpCommand.
+     getXML←{⎕XML(#.HttpCommand.Get ⍵).Data}                 ⍝  XML matrix of page at URL ⍵.
+     getRows←{                                               ⍝  Rows of mat containing key in column col.
          col key←⍺
          mat←⍵
-         ⍝ Extract rows of mat containing key in column col.
-         (mat[;col]≡¨⊂key)⌿mat
-     }
-
-     ⍝ Columns for element names, attribute matrices,
-     ⍝ and keys & values in attribute matrices.
-     name attr key val←2 4 1 2
-
-     ⍝ Extract attribute matrices from all rows of XML submatrix ⍵.
-     getAttrs←{⍵[;attr]}
-
-     ⍝ Extract values from all rows of attribute submatrix ⍵.
-     getVals←{⍵[;val]}
-
-     ⍝ Extract base element rows from XML matrix argument.
-     getBase←name'base'∘getRows
-
-     ⍝ Extract anchor element rows from XML matrix argument.
-     getAnchors←name(,'a')∘getRows
-
-     ⍝ Extract href URLs from XML submatrix ⍵.
-     getHrefs←{⊃,/getVals∘(key'href'∘getRows)¨getAttrs ⍵}
-
-     ⍝ Extract links to PDFs from URL list ⍵.
-     getPDFs←{(('.pdf'≡¯4↑⊢)¨⍵)/⍵}
-
+         (key∘≡¨mat[;col])⌿mat
+     }                                                       ⍝  Columns for element names, attribute matrices,
+     name attr key val←1 3 0 1                               ⍝  and keys & values in attribute matrices.
+     getCol←⌷[1]                                             ⍝  Column ⊣ in matrix ⊢.
+     getAttrs←attr∘getCol                                    ⍝  Attribute matrices from all rows of XML submatrix ⍵.
+     getVals←val∘getCol                                      ⍝  Values from all rows of attribute submatrix ⍵.
+     getBase←name'base'∘getRows                              ⍝  Base element rows from XML matrix ⊢.
+     getAnchors←name(,'a')∘getRows                           ⍝  Anchor element rows from XML matrix ⊢.
+     getHrefs←((⊃,/)getVals∘(key'href'∘getRows)¨)getAttrs    ⍝  href URLs from XML submatrix ⊢.
+     getPDFs←⊢(/⍨)('.pdf'≡¯4↑⊢)¨                             ⍝  Links to PDFs from URL list ⊢.
      xml←getXML url
      baseAddress←⊃getHrefs getBase xml
      baseAddress∘,¨getPDFs getHrefs getAnchors xml
-
  }
