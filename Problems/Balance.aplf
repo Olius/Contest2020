@@ -1,4 +1,4 @@
-﻿ weights←Weights filename
+ parts←Balance nums
       ⍝ 2020 APL Problem Solving Competition Phase II
-      ⍝ Stub function for Problem 9, Task 1 - Weights
+      ⍝ Stub function for Problem 8, Task 1 - Balance
       ⍝ Put your code and comments below here

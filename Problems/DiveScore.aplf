@@ -1,4 +1,4 @@
-﻿ DiveScore←{
+ DiveScore←{
 
      dd←⍺
      scores←⍵
