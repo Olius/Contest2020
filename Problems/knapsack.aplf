@@ -1,0 +1,18 @@
+ knapsack←{
+     Money←⍺
+     Values Costs←⍵
+
+     forward←{
+         value cost←⍺
+         maxs←⊃⌽⍵
+         ⍵,⊂maxs⌈(-1+Money)↑value+(-cost)↓maxs
+     }
+     backward←{
+         ⎕IO←0
+         cost used←⍺
+         leftover←⊃⌽⍵
+         ⍵,leftover-cost×used[leftover]
+     }
+
+     2≠/⊃backward/Money,⍨↓(⌽Costs),[1.5]2≠/⊃forward/(Values,¨Costs),⊂,⊂(1+Money)⍴0
+ }
