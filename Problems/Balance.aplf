@@ -1,5 +1,14 @@
  Balance←{
+
+     ⍝ This problem is a special case of the classic knapsack problem.
+     ⍝ Indeed, take as items the numbers given as input, with equal
+     ⍝ values and costs, and set as allowance half the sum of the input.
+     ⍝ The number can be separated into equal groups if and only if the
+     ⍝ corresponding knapsack problem has a optimal solution whose value
+     ⍝ reaches the allowance.
+
      half←2÷⍨+/⍵
-     mask←(⌊half) knapsack ⍵ ⍵
+     mask←(⌊half)knapsack ⍵ ⍵
      (half=mask+.×⍵)/mask(⊂⊢)⌸⍵
+
  }
