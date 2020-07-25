@@ -21,7 +21,7 @@
      ⍝
      ⍝ We could have kept track of which choices led to the optimal value
      ⍝ in (↑maxTotals)[Money;⍴Values], but this would have cluttered the
-     ⍝ elegant folding code. In any case we can recover it by checking wether
+     ⍝ elegant folding code. In any case we can recover them by checking wether
      ⍝ the optimal value attainable with our allowance changes from one row to
      ⍝ the one above, subtracting from our allowance the cost of the corres-
      ⍝ ponding item if it does.
