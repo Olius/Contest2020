@@ -1,4 +1,18 @@
- text←templateFile Merge jsonFile
-      ⍝ 2020 APL Problem Solving Competition Phase II
-      ⍝ Stub function for Problem 6, Task 1 - Merge
-      ⍝ Put your code and comments below here
+Merge←{
+
+    ⍝ Cut the template on '@', then replace every other part
+    ⍝ by its value in the JSON namespace.
+
+    templateFile←⍺
+    jsonFile←⍵
+    template←⊃⎕NGET templateFile
+    ns←⎕JSON⊃⎕NGET jsonFile
+
+    getValue←{
+        0=⍴⍵:,'@'   ⍝ '@@'         → ,'@'
+        6::'???'    ⍝ ~⍵∊ns.⎕NL ¯2 → '???'
+        ⍕ns⍎⍵       ⍝  ⍵∊ns.⎕NL ¯2 → ⍕ns.⍵
+    }
+    ∊getValue¨@(⍴⍴1 0⍨)'@'(1↓¨=⊂⊢)template
+
+}
