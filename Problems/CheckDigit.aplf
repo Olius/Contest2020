@@ -1,4 +1,9 @@
- digit←CheckDigit digits
-      ⍝ 2020 APL Problem Solving Competition Phase II
-      ⍝ Stub function for Problem 7, Tasl 1 - CheckDigit
-      ⍝ Put your code and comments below here
+ CheckDigit←{
+
+     ⍝ We have
+     ⍝
+     ⍝   C ≡ - ( 3x1 + x2 + … + 3x11 ).
+
+     10|⍵+.×11⍴-3 1
+
+ }
