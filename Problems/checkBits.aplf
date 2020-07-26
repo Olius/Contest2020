@@ -1,0 +1,6 @@
+ checkBits←{
+     B S L M R C E←⍵
+     B M E≢(1 0 1)(0 1 0 1 0)(1 0 1):1  ⍝ Faulty BME guards.
+     1 0∨.(∨.(≠∘(≠/)))L R:1             ⍝ Faulty parities in L or R.
+     0
+ }

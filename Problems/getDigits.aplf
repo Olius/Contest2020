@@ -1,0 +1,6 @@
+ getDigits←{
+     ⎕IO←0
+     B S L M R C E←⍵
+     digits←UPCPatterns⍳(⊂S),L,~R,⊂C
+     (digits∊⍨⍴UPCPatterns)digits
+ }

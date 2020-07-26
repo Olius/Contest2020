@@ -1,0 +1,4 @@
+ checkDigits←{
+     digits←⍵
+     0≠10|digits+.×12⍴3 1   ⍝ Faulty check digit.
+ }

@@ -1,4 +1,21 @@
- digits←ReadUPC bits
-      ⍝ 2020 APL Problem Solving Competition Phase II
-      ⍝ Stub function for Problem 7, Task 3 - ReadUPC
-      ⍝ Put your code and comments below here
+ ReadUPC←{
+
+     bits←⍵
+
+     ⍝ Parse bits.
+     parsed←(3⍴0)(7⍴0)(5⍴⊂7⍴0)(5⍴0)(5⍴⊂7⍴0)(7⍴0)(3⍴0)
+     5::¯1  ⍝ LENGTH error - bits not the right shape.
+     (∊parsed)←bits
+     B S L M R C E←parsed
+
+     ⍝ If input is upside-down, reverse it.
+     ≠/C:∇⌽bits
+
+     ⍝ Check bits, convert, and check digits.
+     checkBits parsed:¯1
+     error digits←getDigits parsed
+     error:¯1
+     checkDigits digits:¯1
+     digits
+
+ }
