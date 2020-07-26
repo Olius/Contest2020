@@ -1,4 +1,10 @@
- bits←WriteUPC digits
-      ⍝ 2020 APL Problem Solving Competition Phase II
-      ⍝ Stub function for Problem 7, Task 2 - WriteUPC
-      ⍝ Put your code and comments below here
+ WriteUPC←{
+     ⎕IO←0
+     digits←⍵
+     ⎕ML←0
+     (11⍴0)≢∊digits:¯1
+     ⎕ML←1
+     3 4 5::¯1   ⍝ INDEX, RANK, and LENGTH errors
+     patterns←UPCPatterns[(⊢,CheckDigit)digits]
+     ∊(1 0 1)(6↑patterns)(0 1 0 1 0)(~6↓patterns)(1 0 1)
+ }
