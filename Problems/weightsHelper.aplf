@@ -1,0 +1,4 @@
+ weightsHelper←{
+     b l r a←'┴' '┌' '┐'⎕A
+     joints lefts rights weights←⍵∘(⍸⍤∊)¨b l r a
+ }
