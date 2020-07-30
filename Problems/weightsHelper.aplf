@@ -1,4 +1,17 @@
  weightsHelper←{
-     b l r a←'┴' '┌' '┐'⎕A
-     joints lefts rights weights←⍵∘(⍸⍤∊)¨b l r a
+
+     template←0⍨¨¨A J L R←⍵∘(⍸⍤∊)¨a j l r←⎕A'┴' '┌' '┐'
+     I←(∊template)←⍳N←⍴∊template
+     Ia Ij Il Ir←template
+
+     Rj Rl Rr Rlr Raj←Ij Il Ir(Il,Ir)(Ia,1↓Ij)⌷¨∘⊂¨⍨Sj Sl Sr Slr Saj←⍋¨J L R,⌽¨¨(L,R)(A,1↓J)
+
+     vertical←(Rlr∘.=I)-Raj∘.=I
+     horizontalSum←(Rl∘.=I)+(Rr∘.=I)-Rj∘.=I
+     Cl Cr←(L[Sl])(R[Sr])-⍥(⊢/¨¨)⊂J[Sj]
+     horizontalBalance←(Cl×[⎕IO]Rl∘.=I)+Cr×[⎕IO]Rr∘.=I
+
+     (∊template)←(N↑1)⌹(N↑1)⍪vertical⍪horizontalSum⍪horizontalBalance
+     template
+
  }
