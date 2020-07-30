@@ -4,12 +4,12 @@
      I←(∊template)←⍳N←⍴∊template
      Ia Ij Il Ir←template
 
-     Rj Rl Rr Rlr Raj←Ij Il Ir(Il,Ir)(Ia,1↓Ij)⌷¨∘⊂¨⍨Sj Sl Sr Slr Saj←⍋¨J L R,⌽¨¨(L,R)(A,1↓J)
+     Rlr Raj←(Il,Ir)(Ia,1↓Ij)⌷¨∘⊂¨⍨Slr Saj←⍋∘(⌽¨)¨(L,R)(A,1↓J)
 
      vertical←(Rlr∘.=I)-Raj∘.=I
-     horizontalSum←(Rl∘.=I)+(Rr∘.=I)-Rj∘.=I
-     Cl Cr←(L[Sl])(R[Sr])-⍥(⊢/¨¨)⊂J[Sj]
-     horizontalBalance←(Cl×[⎕IO]Rl∘.=I)+Cr×[⎕IO]Rr∘.=I
+     horizontalSum←(Il∘.=I)+(Ir∘.=I)-Ij∘.=I
+     Cl Cr←L R-⍥(⊢/¨¨)⊂J
+     horizontalBalance←(Cl×[⎕IO]Il∘.=I)+Cr×[⎕IO]Ir∘.=I
 
      (∊template)←(N↑1)⌹(N↑1)⍪vertical⍪horizontalSum⍪horizontalBalance
      template
