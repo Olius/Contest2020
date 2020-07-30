@@ -1,7 +1,9 @@
  Weights←{
 
+     ⍝ Explain.
      matrix←↑(⊢/(≠⊆⊢)⊢)⊃⎕NGET ⍵
-     sol←weightsHelper matrix
-     ⌊(⊢×1(∧∧.÷⊢)⊢)⊃sol
+     sol←⊃weightsHelper matrix
+     ⍝ Especially this shit.
+     ⌊sol÷∨/1,sol
 
  }
