@@ -1,0 +1,6 @@
+I've been participating in the APL competition since 2016, and began working
+on my major in Math & CS at the University of Geneva, where I live, in 2017.
+My interests in CS right now are floating around the functional languages,
+as well as dependently typed theorem-prover things.  I don't know much but
+one of the projects on my list of stuff to do is to write a typed APL.  First
+however I'm going to try to crawl through the end of my bachelor's degree :)

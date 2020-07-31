@@ -1,0 +1,14 @@
+It was nice that there were slightly fewer problems this year.  Even so,
+I thought that the problems were slightly less algorithmically interesting
+on the whole than previous years.  No DFSs, no graphs, etc.  The last two
+problems were fun, but Balance was basically the knapsack problem, and Weights
+was fun to arrayify and deloopify but was not a hard problem to solve.
+Then again I like graphs and the like, and the problems this year were orig-
+inal as always, so you did a good job.
+P.S.: You really need to fix the SubmitMe function so it works acceptably with
+the RIDE.  Last year it made my Dyalog crash (and because I had not run )SAVE
+because I'm dumb, I lost a good day's work), and this year it failed to write
+the required text into Contest2020.dyalog.
+I'm starting to think that on *nix platforms such as my Mac, it's easier to
+code APL in your favorite text editor and use git there, and only touch the RIDE
+when you need to test your code.
