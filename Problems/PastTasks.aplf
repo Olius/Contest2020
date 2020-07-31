@@ -1,5 +1,10 @@
- PastTasks←{                                                 ⍝  Retrieve all links to PDFs from page at url.
-     url←⍵                                                   ⍝  Requires ]load HttpCommand.
+ PastTasks←{
+
+     ⍝  Retrieve all links to PDFs from page at url.
+     ⍝  Requires ]load HttpCommand.
+
+     ⎕IO←0
+     url←⍵
      getXML←{⎕XML(#.HttpCommand.Get ⍵).Data}                 ⍝  XML matrix of page at URL ⍵.
      getRows←{                                               ⍝  Rows of mat containing key in column col.
          col key←⍺
@@ -13,8 +18,10 @@
      getBase←name'base'∘getRows                              ⍝  Base element rows from XML matrix ⊢.
      getAnchors←name(,'a')∘getRows                           ⍝  Anchor element rows from XML matrix ⊢.
      getHrefs←((⊃,/)getVals∘(key'href'∘getRows)¨)getAttrs    ⍝  href URLs from XML submatrix ⊢.
-     getPDFs←⊢(/⍨)('.pdf'≡¯4↑⊢)¨                             ⍝  Links to PDFs from URL list ⊢.
+     getPDFs←('.pdf'≡¯4↑⊢)¨⊢⍤/⊢                              ⍝  Links to PDFs from URL list ⊢.
+
      xml←getXML url
      baseAddress←⊃getHrefs getBase xml
      baseAddress∘,¨getPDFs getHrefs getAnchors xml
+
  }

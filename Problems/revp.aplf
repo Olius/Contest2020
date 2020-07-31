@@ -1,10 +1,18 @@
- revp←{                                            ⍝  Return indices and lengths of reverse palindrome substrings of dna,
-     ⍺←4+⍳9                                        ⍝  each of length ∊ lens.
+ revp←{
+
+     ⍝ Return indices and lengths of reverse palindrome substrings of dna, each
+     ⍝ of length ∊ lens.
+
+     ⎕IO←0
+     ⍺←4+⍳9
      lens←⍺
      dna←⍵
+
      flip←{⌽'TACG'['ATGC'⍳⍵]}                      ⍝  Reverse complement of ⍵.
      isRevp←⊢≡flip                                 ⍝  If ⊢ is a reverse palindrome.
      subIds←(⊃,/)⊢,¨⍨∘⍳¨1+-                        ⍝  All starts and lengths of substrings with length ∊ ⊢ of a string of length ⊣.
      sub←⊃↑∘(↓∘dna)⍨/                              ⍝  The substring of dna of start and length ⊢.
+
      1 0+[1]↑(⊢(/⍨)isRevp∘sub¨)lens subIds⍨≢dna    ⍝  ⎕IO←0 correction
+
  }

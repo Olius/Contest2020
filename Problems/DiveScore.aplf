@@ -1,6 +1,11 @@
- DiveScore←{                       ⍝ Select 3 closest values to median of scores,
-     dd←⍺                          ⍝ then sum and multiply them by dd.
+ DiveScore←{
+
+     ⍝ Select 3 closest values to median of scores, then sum and multiply them
+     ⍝ by dd.
+
+     dd←⍺
      scores←⍵
-     middle←{⍺↑⍵↓⍨¯1+⌊2÷⍨⍴⍵}       ⍝ ⍺ values around the middle of ⍵.
+     middle←{⍺↑⍵↓⍨¯1+⌊2÷⍨⍴⍵}    ⍝ ⍺ values around the middle of ⍵.
      dd×+/3 middle{⍵[⍋⍵]}scores
+
  }

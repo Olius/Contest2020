@@ -1,6 +1,11 @@
  getDigits←{
+
+     ⍝ Retrieves digits from UPC bit patterns.
+     ⍝ Returns error bit followed by result.
+
      ⎕IO←0
      B S L M R C E←⍵
      digits←UPCPatterns⍳(⊂S),L,~R,⊂C
-     (digits∊⍨⍴UPCPatterns)digits
+     (digits∊⍨⍴UPCPatterns)digits   ⍝ Signal error if some patterns not found.
+
  }
