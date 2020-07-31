@@ -366,7 +366,7 @@
      Ia Ij Il Ir←template
 
      ⍝ Read hooks etc. in anti-lex. order.  (The rest is already in lex. order.)
-     Rlr Raj←(Il,Ir)(Ia,1↓Ij)⌷¨∘⊂¨⍨Slr Saj←⍋∘(⌽¨)¨(L,R)(A,1↓J)
+     Rlr Raj←(Il,Ir)(Ia,1↓Ij){⍺[⍵]}¨⍋∘(⌽¨)¨(L,R)(A,1↓J)
 
      ⍝ Generate the Big Matrix.
      vertical←(Rlr∘.=I)-Raj∘.=I
