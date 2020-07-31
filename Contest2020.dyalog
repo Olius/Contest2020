@@ -321,5 +321,64 @@
 
  }
 
+ weightsHelper←{
+
+     ⍝ Takes a matrix representing a mobile as in the problem description,
+     ⍝ and looplessly returns the weights which balance it, with weight 'A'
+     ⍝ equal to 1.  Also returns the total weight at each left (┌) and right (┐)
+     ⍝ hook, and at each joint (┴).
+     ⍝
+     ⍝ The suggested solution is to generate a Big Matrix expressing the rela-
+     ⍝ tions between weights and solve the linear system with ⌹.  This works be-
+     ⍝ cause a simple induction on binary trees shows that the number of joints
+     ⍝ is one less than the number of weights, and since each joint leads to one
+     ⍝ linear equation in the weights, the kernel of the Matrix expressing our
+     ⍝ system has one dimension; therefore we choose the smallest integer solu-
+     ⍝ tion. The Matrix will always be invertible as the whole problem can be
+     ⍝ solved bottom-up, which would probably be the most idiomatic way to do so
+     ⍝ in a procedural language, and might be more efficient.  (But loopful!)
+     ⍝
+     ⍝ There are two observations which allow looplessness.  The first is that
+     ⍝ we can simplify the Matrix by introducing new unknowns: (i) the total
+     ⍝ weight at each joint, and (ii) the total weight at each hook.  Each new
+     ⍝ unknown brings with it a new equation: (i) the total weight at the joint,
+     ⍝ which is the sum of the weights of the left and right hooks; and (ii) the
+     ⍝ total weight at the hook, which is the total weight of whatever is below.
+     ⍝ Along with the original equilibrium equations, this new Matrix again has
+     ⍝ maximum rank minus 1.  However each equilibrium equation can be signifi-
+     ⍝ cantly simplified, as left and right weights are simply the total weights
+     ⍝ at the left and right hooks corresponding to the equation.
+     ⍝
+     ⍝ The second observation is that finding linked hooks, joints, and weights
+     ⍝ is a relatively simple matter.  Indeed, reading left and right hooks from
+     ⍝ left to right, top to bottom (in lexicographic order of the indices) pla-
+     ⍝ ces them in the same order as joints; a similar correspondence is obtain-
+     ⍝ ed between hooks and the weights and joints (all but the topmost) that
+     ⍝ they support, by reading from top to bottom, left to right (anti-lexico-
+     ⍝ graphic order of the indices).
+     ⍝
+     ⍝ The rest of the function is simply juggling indices around to fit every-
+     ⍝ thing into the Big Matrix.
+
+     ⍝ Find weights, joints, and hooks in the input.
+     template←0⍨¨¨A J L R←⍵∘(⍸⍤∊)¨a j l r←⎕A'┴' '┌' '┐'
+     I←(∊template)←⍳N←⍴∊template
+     Ia Ij Il Ir←template
+
+     ⍝ Read hooks etc. in anti-lex. order.  (The rest is already in lex. order.)
+     Rlr Raj←(Il,Ir)(Ia,1↓Ij)⌷¨∘⊂¨⍨Slr Saj←⍋∘(⌽¨)¨(L,R)(A,1↓J)
+
+     ⍝ Generate the Big Matrix.
+     vertical←(Rlr∘.=I)-Raj∘.=I
+     horizontalSum←(Il∘.=I)+(Ir∘.=I)-Ij∘.=I
+     Cl Cr←L R-⍥(⊢/¨¨)⊂J
+     horizontalBalance←(Cl×[⎕IO]Il∘.=I)+Cr×[⎕IO]Ir∘.=I
+
+     ⍝ Throw everything together and invert the Big Matrix.
+     (∊template)←(N↑1)⌹(N↑1)⍪vertical⍪horizontalSum⍪horizontalBalance
+     template
+
+ }
+
     :EndNamespace
 :EndNamespace
