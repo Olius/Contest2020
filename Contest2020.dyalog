@@ -203,6 +203,38 @@
 
  }
 
+ checkBits←{
+
+     ⍝ Check for faulty bit patterns in boolean UPC vector.
+
+     B S L M R C E←⍵
+     B M E≢(1 0 1)(0 1 0 1 0)(1 0 1):1  ⍝ Faulty BME guards.
+     1 0∨.(∨.(≠∘(≠/)))L R:1             ⍝ Faulty parities in L or R.
+     0
+
+ }
+
+ getDigits←{
+
+     ⍝ Retrieves digits from UPC bit patterns.
+     ⍝ Returns error bit followed by result.
+
+     ⎕IO←0
+     B S L M R C E←⍵
+     digits←UPCPatterns⍳(⊂S),L,~R,⊂C
+     (digits∊⍨⍴UPCPatterns)digits   ⍝ Signal error if some patterns not found.
+
+ }
+
+ checkDigits←{
+
+     ⍝ Check for faulty digits in UPC digit vector.
+
+     digits←⍵
+     0≠10|digits+.×12⍴3 1   ⍝ Faulty check digit.
+
+ }
+
  Balance←{
 
      ⍝ This problem is a special case of the classic knapsack problem.
