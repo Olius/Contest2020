@@ -6,6 +6,8 @@ This year we will:
 
  - Strive for elegance and readability.
 
+ - Remember to use the `.dyalog` file next year.
+
 
 == Style guidelines
 
