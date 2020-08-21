@@ -1,8 +1,0 @@
- checkDigits←{
-
-     ⍝ Check for faulty digits in UPC digit vector.
-
-     digits←⍵
-     0≠10|digits+.×12⍴3 1   ⍝ Faulty check digit.
-
- }
